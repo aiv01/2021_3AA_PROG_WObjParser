@@ -3,6 +3,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+typedef struct{
+    float x;
+    float y;
+    float z;
+}wobj_float3;
+
+typedef struct{
+    float x;
+    float y;
+}wobj_float2;
+
+typedef struct{
+    wobj_float3 position;
+    wobj_float2 uv;
+    wobj_float3 normal;
+}wobj_vertex;
+
+typedef struct{
+    wobj_vertex v1;
+    wobj_vertex v2;
+    wobj_vertex v3;
+}wobj_triangle;
+
+
 typedef struct
 {
     float *vertices;
@@ -19,6 +44,9 @@ typedef struct
     int faces_size;
     int faces_count;
 
+    wobj_triangle* triangles;
+    int triangles_count;
+
 } wobj;
 
 wobj* wobj_from_file(const char* file_path)
@@ -28,6 +56,7 @@ wobj* wobj_from_file(const char* file_path)
     w->uvs_count = 0;
     w->normals_count = 0;
     w->faces_count = 0;
+    w->triangles_count = 0;
     FILE* file = fopen(file_path, "r");
     if(file == NULL){
         return NULL;
@@ -130,13 +159,29 @@ wobj* wobj_from_file(const char* file_path)
 
                 faces_index +=3;
             }
-            
-          
         }
     }
 
     fclose(file);
 
+    w->triangles_count = w->faces_count;
+    w->triangles = (wobj_triangle*)malloc(sizeof(wobj_triangle)*w->triangles_count);
+
+    for (int i = 0; i < w->triangles_count; i++)
+    {
+        wobj_triangle t;
+        int vertex_index = (w->faces[0 + i * 9] - 1) * 3;
+        t.v1.position.x = w->vertices[vertex_index];
+        t.v1.position.y = w->vertices[vertex_index + 1];
+        t.v1.position.z = w->vertices[vertex_index + 2];
+
+        int uv_index = (w->faces[1 + i * 9] -1) *2;
+        t.v1.uv.x = w->uvs[uv_index];
+        t.v1.uv.y = w->uvs[uv_index + 1];
+
+        w->triangles[i] = t;
+    }
+    
     return w;
 }
 
@@ -146,5 +191,6 @@ void wobj_destroy(wobj* obj){
     free(obj->vertices);
     free(obj->normals);
     free(obj->uvs);
+    free(obj->triangles);
     free(obj);
 }

@@ -96,6 +96,87 @@ CUNIT_TEST(test_quad_faces)
     CUNIT_INT_EQ(1, quad->faces[17]);
     
     wobj_destroy(quad);
-
 }
+
+CUNIT_TEST(test_quad_triangle){
+    wobj *quad = wobj_from_file("resources/quad.obj");
+    CUNIT_INT_EQ(2, quad->triangles_count);
+
+    //t1 v1
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v1.position.x);
+    CUNIT_FLOAT_EQ(-1.f, quad->triangles[0].v1.position.y);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v1.position.z);
+
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v1.uv.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v1.uv.y);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v1.normal.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v1.normal.y);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v1.normal.z);
+
+    //t1 v2
+    CUNIT_FLOAT_EQ(-1.f, quad->triangles[0].v2.position.x);
+    CUNIT_FLOAT_EQ(-1.f, quad->triangles[0].v2.position.y);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v2.position.z);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v2.uv.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v2.uv.y);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v2.normal.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v2.normal.y);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v2.normal.z);
+
+    //t1 v3
+    CUNIT_FLOAT_EQ(-1.f, quad->triangles[0].v3.position.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v3.position.y);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v3.position.z);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v3.uv.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v3.uv.y);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v3.normal.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[0].v3.normal.y);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[0].v3.normal.z);
+
+    //t2 v1
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.position.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.position.y);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.position.z);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.uv.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.uv.y);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.normal.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.normal.y);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.normal.z);
+
+    //t2 v2
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v2.position.x);
+    CUNIT_FLOAT_EQ(-1.f, quad->triangles[1].v2.position.y);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v2.position.z);
+
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v2.uv.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v2.uv.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v2.uv.y);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v2.normal.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v2.normal.y);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v2.normal.z);
+
+    //t2 v3
+    CUNIT_FLOAT_EQ(-1.f, quad->triangles[1].v3.position.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v3.position.y);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v3.position.z);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v3.uv.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v3.uv.y);
+
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v3.normal.x);
+    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v3.normal.y);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v3.normal.z);
+
+
+    wobj_destroy(quad);
+}
+
 
