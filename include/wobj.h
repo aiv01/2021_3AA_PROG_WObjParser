@@ -179,6 +179,12 @@ wobj* wobj_from_file(const char* file_path)
         t.v1.uv.x = w->uvs[uv_index];
         t.v1.uv.y = w->uvs[uv_index + 1];
 
+        //v1 normals
+
+        //v2 tutto
+        //v3 tutto
+
+
         w->triangles[i] = t;
     }
     
