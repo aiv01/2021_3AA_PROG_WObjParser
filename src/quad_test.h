@@ -23,3 +23,23 @@ CUNIT_TEST(test_quad_vertices)
     CUNIT_FLOAT_EQ(-1.f, quad->vertices[10]);
     CUNIT_FLOAT_EQ(0.f, quad->vertices[11]);
 }
+
+CUNIT_TEST(test_quad_uvs)
+{
+    wobj *quad = wobj_from_file("resources/quad.obj");
+
+    CUNIT_INT_EQ(8, quad->uvs_count);
+
+    CUNIT_FLOAT_EQ(1.f, quad->uvs[0]);
+    CUNIT_FLOAT_EQ(1.f, quad->uvs[1]);
+
+    CUNIT_FLOAT_EQ(0.f, quad->uvs[2]);
+    CUNIT_FLOAT_EQ(1.f, quad->uvs[3]);
+
+    CUNIT_FLOAT_EQ(0.f, quad->uvs[4]);
+    CUNIT_FLOAT_EQ(0.f, quad->uvs[5]);
+
+    CUNIT_FLOAT_EQ(1.f, quad->uvs[6]);
+    CUNIT_FLOAT_EQ(0.f, quad->uvs[7]);
+
+}
