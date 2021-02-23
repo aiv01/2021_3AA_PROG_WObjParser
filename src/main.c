@@ -1,6 +1,6 @@
 #include "aiv-cunit.h"
-#include "example_test.h"
+#include "quad_test.h"
 
 CUNIT_RUNNER(
-    test_example
+   test_quad_vertices
 )
