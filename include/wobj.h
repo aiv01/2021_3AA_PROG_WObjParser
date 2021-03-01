@@ -49,7 +49,7 @@ typedef struct
 
 } wobj;
 
-wobj* wobj_from_file(const char* file_path)
+static wobj* wobj_from_file(const char* file_path)
 {
     wobj *w = (wobj*)malloc(sizeof(wobj));
     w->vertices_count = 0;
@@ -85,10 +85,10 @@ wobj* wobj_from_file(const char* file_path)
     w->normals_size = w->normals_count*3;
     w->faces_size = w->faces_count*9;
 
-    w->vertices = malloc(sizeof(float) * w->vertices_size);
-    w->uvs = malloc(sizeof(float)*w->uvs_size);
-    w->normals = malloc(sizeof(float)*w->normals_size);
-    w->faces = malloc(sizeof(int)*w->faces_size);
+    w->vertices = (float*)malloc(sizeof(float) * w->vertices_size);
+    w->uvs = (float*)malloc(sizeof(float)*w->uvs_size);
+    w->normals = (float*)malloc(sizeof(float)*w->normals_size);
+    w->faces = (int*)malloc(sizeof(int)*w->faces_size);
     int vert_index = 0;
     int uv_index= 0;
     int normal_index= 0;
@@ -223,8 +223,7 @@ wobj* wobj_from_file(const char* file_path)
     return w;
 }
 
-void wobj_destroy(wobj* obj){
-
+static void wobj_destroy(wobj* obj){
     free(obj->faces);
     free(obj->vertices);
     free(obj->normals);
