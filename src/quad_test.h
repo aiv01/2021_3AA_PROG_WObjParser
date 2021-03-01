@@ -143,7 +143,7 @@ CUNIT_TEST(test_quad_triangle){
     CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.position.y);
     CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.position.z);
 
-    CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.uv.x);
+    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.uv.x);
     CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v1.uv.y);
 
     CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v1.normal.x);
@@ -155,7 +155,6 @@ CUNIT_TEST(test_quad_triangle){
     CUNIT_FLOAT_EQ(-1.f, quad->triangles[1].v2.position.y);
     CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v2.position.z);
 
-    CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v2.uv.x);
     CUNIT_FLOAT_EQ(1.f, quad->triangles[1].v2.uv.x);
     CUNIT_FLOAT_EQ(0.f, quad->triangles[1].v2.uv.y);
 

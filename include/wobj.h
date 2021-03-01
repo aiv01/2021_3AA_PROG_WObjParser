@@ -170,20 +170,52 @@ wobj* wobj_from_file(const char* file_path)
     for (int i = 0; i < w->triangles_count; i++)
     {
         wobj_triangle t;
-        int vertex_index = (w->faces[0 + i * 9] - 1) * 3;
-        t.v1.position.x = w->vertices[vertex_index];
+        int vertex_index, uv_index, normal_index, face;
+
+        //v1
+        vertex_index = (w->faces[i*9 +0] - 1) * 3;
+        t.v1.position.x = w->vertices[vertex_index + 0];
         t.v1.position.y = w->vertices[vertex_index + 1];
         t.v1.position.z = w->vertices[vertex_index + 2];
 
-        int uv_index = (w->faces[1 + i * 9] -1) *2;
+        uv_index = (w->faces[i*9 +1]-1) * 2;
         t.v1.uv.x = w->uvs[uv_index];
         t.v1.uv.y = w->uvs[uv_index + 1];
 
-        //v1 normals
+        normal_index = (w->faces[i*9 +2] -1) * 2;
+        t.v1.normal.x = w->normals[normal_index + 0];
+        t.v1.normal.y = w->normals[normal_index + 1];
+        t.v1.normal.z = w->normals[normal_index + 2];
 
-        //v2 tutto
-        //v3 tutto
+        //v2
+        vertex_index = (w->faces[i*9 +3] - 1) * 3;
+        t.v2.position.x = w->vertices[vertex_index + 0];
+        t.v2.position.y = w->vertices[vertex_index + 1];
+        t.v2.position.z = w->vertices[vertex_index + 2];
 
+        uv_index = (w->faces[i*9 +4] -1) * 2;
+        t.v2.uv.x = w->uvs[uv_index];
+        t.v2.uv.y = w->uvs[uv_index + 1];
+
+        normal_index = (w->faces[i*9 +5] -1) * 2;
+        t.v2.normal.x = w->normals[normal_index + 0];
+        t.v2.normal.y = w->normals[normal_index + 1];
+        t.v2.normal.z = w->normals[normal_index + 2];
+
+        //v3
+        vertex_index = (w->faces[i*9 +6] - 1) * 3;
+        t.v3.position.x = w->vertices[vertex_index + 0];
+        t.v3.position.y = w->vertices[vertex_index + 1];
+        t.v3.position.z = w->vertices[vertex_index + 2];
+
+        uv_index = (w->faces[i*9 +7] -1) * 2;
+        t.v3.uv.x = w->uvs[uv_index];
+        t.v3.uv.y = w->uvs[uv_index + 1];
+
+        normal_index = (w->faces[i*9 +8] -1) * 2;
+        t.v3.normal.x = w->normals[normal_index + 0];
+        t.v3.normal.y = w->normals[normal_index + 1];
+        t.v3.normal.z = w->normals[normal_index + 2];
 
         w->triangles[i] = t;
     }
